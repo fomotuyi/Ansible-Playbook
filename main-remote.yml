@@ -1,0 +1,24 @@
+---
+# Exercise for setting up a web server in an EC
+- name: Exercise for setting up a web server in an EC 
+  # hosts: ubuntu
+  # Use the public IP if the VM is already created
+  hosts: all
+  user: ubuntu
+  become: true
+  become_method: sudo
+  become_user: root
+  pre_tasks:
+    - name: "wait 600 seconds for target connection to become reachable/usable."
+      wait_for_connection:
+        delay: 5
+        timeout: 600
+
+    - name: "install python for Ansible."
+      become: yes
+      apt:
+        name: python3
+        state: latest
+  roles:
+   - setup
+   - print
