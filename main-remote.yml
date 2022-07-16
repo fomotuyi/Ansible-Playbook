@@ -19,5 +19,6 @@
       apt:
         name: python3
         state: latest
+  
   roles:
-   - setup
+    - setup
